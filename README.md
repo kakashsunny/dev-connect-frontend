@@ -12,8 +12,6 @@ The experience is designed around a high-end editorial dark aesthetic with inter
 
 🌐 **[View CONVERGE 2026 Live Demo](https://agent-6aa3f783451e9d1c--inspiring-caramel-3c3506.netlify.app/)**
 
-💻 **[View Source Code on GitHub](YOUR_GITHUB_REPOSITORY_URL)**
-
 ---
 
 ## 📸 Overview
