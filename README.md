@@ -6,7 +6,7 @@ An award-winning, accessible, and modern single-page technical conference schedu
 
 ## 🚀 Live Demo
 
-**[View CONVERGE 2026 Live Demo](https://agent-6aa4298db05d0237--inspiring-caramel-3c3506.netlify.app/)**
+**[View CONVERGE 2026 Live Demo](https://inspiring-caramel-3c3506.netlify.app/)**
 
 ---
 
