@@ -10,11 +10,6 @@ An award-winning, accessible, and modern single-page technical conference schedu
 
 ---
 
-## 💻 Source Code
-
-**[View the GitHub Repository](https://github.com/kakashsunny/dev-connect-frontend)**
-
----
 
 ## Project Overview
 
