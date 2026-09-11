@@ -62,10 +62,11 @@ export const PublicRepoSearch: React.FC<PublicRepoSearchProps> = ({ onNotify }) 
 
   const inputRef = useRef<HTMLInputElement>(null);
   const isInitialMount = useRef(true);
+  const isLoadingRef = useRef(false);
 
   // Fetch repositories from public GitHub Search API
   const performSearch = useCallback(async (searchQuery: string) => {
-    if (isLoading) return; // Prevent duplicate searches while loading
+    if (isLoadingRef.current) return; // Prevent duplicate searches while loading
 
     const trimmed = searchQuery.trim();
     if (!trimmed) {
@@ -73,6 +74,7 @@ export const PublicRepoSearch: React.FC<PublicRepoSearchProps> = ({ onNotify }) 
       return;
     }
 
+    isLoadingRef.current = true;
     setIsLoading(true);
     setError(null);
     setSubmittedQuery(trimmed);
@@ -112,9 +114,10 @@ export const PublicRepoSearch: React.FC<PublicRepoSearchProps> = ({ onNotify }) 
         onNotify('Unable to load repositories. Please check your connection and try again.');
       }
     } finally {
+      isLoadingRef.current = false;
       setIsLoading(false);
     }
-  }, [isLoading, onNotify]);
+  }, [onNotify]);
 
   // Initial search on mount
   useEffect(() => {
