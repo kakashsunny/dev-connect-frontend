@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Bookmark, HelpCircle, Sparkles, Search } from 'lucide-react';
+import { Calendar, Bookmark, HelpCircle, Sparkles, Search, Github } from 'lucide-react';
 import { ConferenceDay } from '../types';
 
 interface HeaderProps {
@@ -10,6 +10,7 @@ interface HeaderProps {
   onToggleBookmarkedOnly: () => void;
   onOpenShortcuts: () => void;
   onFocusSearch: () => void;
+  onNavigateToRepoSearch?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,6 +21,7 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleBookmarkedOnly,
   onOpenShortcuts,
   onFocusSearch,
+  onNavigateToRepoSearch,
 }) => {
   return (
     <header className="sticky top-0 z-40 w-full bg-[#080B12]/90 backdrop-blur-md border-b border-white/10 transition-colors">
@@ -56,8 +58,8 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Center / Right: Day Switcher Navigation Links */}
-        <nav aria-label="Conference Days Navigation" className="flex items-center gap-1 sm:gap-2">
+        {/* Center / Right: Day Switcher & Repo Search Navigation Links */}
+        <nav aria-label="Conference and Repositories Navigation" className="flex items-center gap-1 sm:gap-2">
           <button
             type="button"
             onClick={() => onSelectDay(1)}
@@ -83,7 +85,20 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <span className="hidden xs:inline">Day 2 • </span>Oct 15
           </button>
+
+          {/* Public Repo Search Quick Nav Button */}
+          {onNavigateToRepoSearch && (
+            <button
+              type="button"
+              onClick={onNavigateToRepoSearch}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all cursor-pointer border border-white/5"
+            >
+              <Github className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Repo Search</span>
+            </button>
+          )}
         </nav>
+
 
         {/* Right Actions: Search, Bookmarks, Accessibility */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">

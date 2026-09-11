@@ -10,6 +10,7 @@ import { Hero } from './components/Hero';
 import { DaySelector } from './components/DaySelector';
 import { TrackFilter } from './components/TrackFilter';
 import { Schedule } from './components/Schedule';
+import { PublicRepoSearch } from './components/PublicRepoSearch';
 import { SessionDialog } from './components/SessionDialog';
 import { KeyboardShortcutsModal } from './components/KeyboardShortcutsModal';
 import { Footer } from './components/Footer';
@@ -25,6 +26,7 @@ export default function App() {
 
   const searchInputRef = useRef<HTMLInputElement>(null);
   const scheduleSectionRef = useRef<HTMLDivElement>(null);
+  const repoSearchRef = useRef<HTMLDivElement>(null);
 
   // Persistent Bookmark IDs in Local Storage
   const [bookmarkedSessionIds, setBookmarkedSessionIds] = useState<Set<string>>(() => {
@@ -149,6 +151,10 @@ export default function App() {
     scheduleSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
+  const handleNavigateToRepoSearch = useCallback(() => {
+    repoSearchRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
   // Day specific data
   const timeSlots = currentDay === 1 ? TIME_SLOTS_DAY_1 : TIME_SLOTS_DAY_2;
   const daySessions = useMemo(() => SESSIONS.filter((s) => s.day === currentDay), [currentDay]);
@@ -178,6 +184,7 @@ export default function App() {
         }
         onOpenShortcuts={() => setIsShortcutsOpen(true)}
         onFocusSearch={handleFocusSearch}
+        onNavigateToRepoSearch={handleNavigateToRepoSearch}
       />
 
       {/* Hero Section with Atmospheric Visual Background */}
@@ -187,7 +194,7 @@ export default function App() {
       <main
         id="main-schedule"
         ref={scheduleSectionRef}
-        className="flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-6 sm:space-y-8"
+        className="flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10 sm:space-y-14"
       >
         {/* Day Selector Navigation */}
         <DaySelector
@@ -235,6 +242,11 @@ export default function App() {
           onToggleBookmark={handleToggleBookmark}
           onResetFilters={handleResetFilters}
         />
+
+        {/* Public Repository Search Section */}
+        <div ref={repoSearchRef} className="pt-6 sm:pt-8 border-t border-white/10">
+          <PublicRepoSearch onNotify={(msg) => setAnnouncement(msg)} />
+        </div>
       </main>
 
       {/* Minimal Footer */}

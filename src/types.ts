@@ -59,3 +59,30 @@ export interface ScheduleFilterState {
   bookmarkedOnly: boolean;
   selectedLevel: string | 'all';
 }
+
+export interface GitHubRepoOwner {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+}
+
+export interface GitHubRepo {
+  id: number;
+  name: string;
+  full_name: string;
+  html_url: string;
+  description: string | null;
+  stargazers_count: number;
+  language: string | null;
+  forks_count?: number;
+  open_issues_count?: number;
+  updated_at?: string;
+  owner: GitHubRepoOwner;
+  topics?: string[];
+}
+
+export interface GitHubSearchResponse {
+  total_count: number;
+  incomplete_results: boolean;
+  items: GitHubRepo[];
+}
