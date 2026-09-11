@@ -1,0 +1,6 @@
+{
+  "name": "CONVERGE 2026 Conference Schedule",
+  "description": "An award-winning, accessible single-page two-day conference schedule web application for CONVERGE 2026 in Bengaluru, India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
